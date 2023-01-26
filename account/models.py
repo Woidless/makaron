@@ -38,7 +38,7 @@ class UserManager(BaseUserManager):
 
 class CustomUser(AbstractUser):
     email = models.EmailField('email address', unique=True)
-    number= models.DecimalField('number phone', unique=True, max_digits=15, decimal_places=0, null=True)
+    number = models.DecimalField('number phone', unique=True, max_digits=15, decimal_places=0, null=True)
     password = models.CharField(max_length=100)
     is_active = models.BooleanField(_('active'),
                                     default=False,
@@ -54,7 +54,7 @@ class CustomUser(AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
-    def __str__(self) -> str:
+    def __str__(self):
         return self.email
 
     def create_activation_code(self):

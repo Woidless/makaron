@@ -9,6 +9,7 @@ from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
+from mainpages.views import product
 
 schema_view = get_schema_view(
    openapi.Info(
@@ -32,7 +33,8 @@ urlpatterns = [
 
    path('admin/', admin.site.urls),
    path('accounts/', include('account.urls')),
-   
+   path('home/', product),
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
