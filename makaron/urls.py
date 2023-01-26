@@ -34,6 +34,7 @@ urlpatterns = [
    path('admin/', admin.site.urls),
    path('accounts/', include('account.urls')),
    path('home/', product),
+   path('menu/', include('product.urls'))
 
 ]
 
