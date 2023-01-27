@@ -44,6 +44,7 @@ class ActivationView(APIView):
 
 ''' Log in/out '''
 
+
 class LoginView(TokenObtainPairView):
     permission_classes = (permissions.AllowAny,)
 
@@ -59,6 +60,8 @@ class LogoutView(GenericAPIView):
 
 
 ''' Restore '''
+
+
 class ForgotPasswordView(APIView):
     permission_classes = (permissions.AllowAny,)
 

@@ -7,15 +7,11 @@ from .serilazers import ProductSerializer, CategorySerializer
 from .models import Product, Category
 
 
-# @api_view(['GET'])
-# def product(request):
-#     product = Product.objects.all()
-#     serializer = ProductSerializer(product, many=True)
-#     return Response(
-#         {
-#             f'message: this is list of product: {serializer.data}'
-#         }
-#     )
+@api_view(['GET'])
+def product(request):
+    product = Product.objects.all()
+    serializer = ProductSerializer(product, many=True)
+    return Response(serializer.data)
 
 
 class CategoryViewSet(APIView):
@@ -23,3 +19,10 @@ class CategoryViewSet(APIView):
         category = Category.objects.all()
         serializer = CategorySerializer(category, many=True)
         return Response(serializer.data)
+
+    def post(self, request):
+        category = request.data.get('post')
+        serializer = CategorySerializer(data=category)
+        if serializer.is_valid(raise_exception=True):
+            post_saved = serializer.save()
+        return serializer.data
