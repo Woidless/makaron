@@ -48,7 +48,7 @@ class CustomUser(AbstractUser):
                                         'Designates whether this user should be treted as active.'
                                         'Unselect this instead of deleting accounts.'
                                     ))
-    
+    is_superuser = models.BooleanField('status', blank=True)
     activation_code = models.CharField(max_length=220, blank=True)
 
     objects = UserManager()
