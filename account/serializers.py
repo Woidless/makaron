@@ -5,6 +5,7 @@ from rest_framework import serializers
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
 
+from .models import CustomUser
 
 User = get_user_model()
 
@@ -91,3 +92,10 @@ class RestorePasswordSerializer(serializers.Serializer):
         user.save()
         return user
 
+
+
+class UserListSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = CustomUser
+        fields = ('__all__')
