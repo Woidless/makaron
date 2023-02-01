@@ -85,23 +85,15 @@ class ForgotPasswordView(APIView):
             )
 
 
-
 class RestoreView(TokenObtainPairView):
     permission_classes = (permissions.AllowAny,)
     serializer_class = serializers.RestorePasswordSerializer
 
 
-
-
-
-class DishMenuViewSet(ModelViewSet):
+class UserListViewSet(ModelViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = serializers.UserListSerializer
-
-
-    def get_permissions(self):
-        if self.request.method == 'GET': return [permissions.IsAdminUser()]
-        return [permissions.IsAdminUser()]
+    permission_classes = [permissions.IsAdminUser]
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
