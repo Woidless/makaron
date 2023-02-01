@@ -71,7 +71,7 @@ class ForgotPasswordView(APIView):
         try:
             email = serializer.data.get('email')
             user = User.objects.get(email=email)
-            user.activate_code = randint(1000, 9999)
+            user.activation_code = randint(1000, 9999)
             user.save()
             send_code_password_reset(user=user)
             return Response(
