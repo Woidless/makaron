@@ -75,7 +75,7 @@ class RestorePasswordSerializer(serializers.Serializer):
         #                                       'alpha symbols and numbers!')
         try:
             user = User.objects.get(
-                activation_code=attrs['code']
+                activate_code=attrs['code']
             )
         except User.DoesNotExist:
             raise serializers.ValidationError(

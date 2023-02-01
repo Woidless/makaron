@@ -65,12 +65,13 @@ class ForgotPasswordView(APIView):
     permission_classes = (permissions.AllowAny,)
 
     def post(self, request):
+        from random import randint
         serializer = serializers.ForgotPasswordSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         try:
             email = serializer.data.get('email')
             user = User.objects.get(email=email)
-            user.create_activation_code()
+            user.activate_code = randint(1000, 9999)
             user.save()
             send_code_password_reset(user=user)
             return Response(
@@ -88,6 +89,9 @@ class ForgotPasswordView(APIView):
 class RestoreView(TokenObtainPairView):
     permission_classes = (permissions.AllowAny,)
     serializer_class = serializers.RestorePasswordSerializer
+
+
+
 
 
 class DishMenuViewSet(ModelViewSet):
